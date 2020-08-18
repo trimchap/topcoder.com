@@ -5,7 +5,6 @@ class LinkedListNode:
         self.value = value
         self.next_node = None
 
-        
     def get_value(self):
         return self.value
         
