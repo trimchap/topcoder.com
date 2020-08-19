@@ -1,3 +1,21 @@
+def x_overlap_found(all_xs):
+    x1_left, x1_right, x2_left, x2_right = all_xs
+    if x1_left < x2_left and x1_right > x2_left:
+        return True
+    elif x2_left < x1_left and x2_right > x1_left:
+        return True
+    else:
+        return False # no x overlap
+
+def y_overlap_found(all_xs):
+    y1_bottom, y1_top, y2_bottom, y2_top = all_ys
+    if y1_bottom < y2_bottom and y1_top > y2_bottom:
+        return True
+    elif y2_bottom < y1_bottom and y2_top > y1_bottom:
+        return True
+    else:
+        return False # no x overlap
+
 all_xs = []
 all_ys = []
 
@@ -37,16 +55,20 @@ all_ys.append(your_rectangle['bottom_y'] + your_rectangle['height'])
 
 print(all_xs)
 print(all_ys)
-list.sort(all_xs)
-list.sort(all_ys)
-print(all_xs)
-print(all_ys)
+# is there an intersection??
+if (x_overlap_found(all_xs)) and (y_overlap_found(all_ys)):
+    list.sort(all_xs)
+    list.sort(all_ys)
+    print(all_xs)
+    print(all_ys)
 
-love_rectangle = {
-    'left_x' : all_xs[1],
-    'bottom_y' : all_ys[1],
-    'width' : all_xs[2] - all_xs[1],
-    'height' : all_ys[2] - all_ys[1]
-}
+    love_rectangle = {
+        'left_x' : all_xs[1],
+        'bottom_y' : all_ys[1],
+        'width' : all_xs[2] - all_xs[1],
+        'height' : all_ys[2] - all_ys[1]
+    }
 
-print(love_rectangle)
+    print(love_rectangle)
+else:
+    print('no overlap - no love')
