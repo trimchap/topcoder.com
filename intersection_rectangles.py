@@ -7,7 +7,7 @@ def x_overlap_found(all_xs):
     else:
         return False # no x overlap
 
-def y_overlap_found(all_xs):
+def y_overlap_found(all_ys):
     y1_bottom, y1_top, y2_bottom, y2_top = all_ys
     if y1_bottom < y2_bottom and y1_top > y2_bottom:
         return True
@@ -44,6 +44,7 @@ print(your_rectangle)
 all_xs = []
 all_ys = []
 
+# unpack all x's and all y's
 all_xs.append(my_rectangle['left_x'])
 all_xs.append(my_rectangle['left_x'] + my_rectangle['width'])
 all_xs.append(your_rectangle['left_x'])
@@ -57,6 +58,7 @@ print(all_xs)
 print(all_ys)
 # is there an intersection??
 if (x_overlap_found(all_xs)) and (y_overlap_found(all_ys)):
+    # if yes, sort the x's and y's and the intersecting rectangle will be the middle coefficients
     list.sort(all_xs)
     list.sort(all_ys)
     print(all_xs)
