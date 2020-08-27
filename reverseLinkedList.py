@@ -1,65 +1,63 @@
 # Linked List Node
-class LinkedListNode:
+class Node:
 
     def __init__(self, value):
         self.value = value
-        self.next_node = None
+        self.next = None
 
     def get_value(self):
         return self.value
         
     def get_next(self):
-        return(self.next_node)
+        return(self.next)
     
     def set_next(self, new_next):
-        self.next_node = new_next
+        self.next = new_next
     
+def populate_linked_list(values):
+    if values == []:
+        head = None
+        return
+    head = Node(values[0])
+    for value in values[1:]:
+        new_node = Node(value)
+        new_node.next = head
+        head = new_node
+    return head
+
+def print_linked_list(head):
+    print_node = head
+    while print_node:
+        print(print_node.value)
+        print_node = print_node.next
+
+def reverse_linked_list(head):
+    # if linked list is empty, return
+    if not head:
+        return(head)
+    # set previous and next pointers
+    prev = None
+    curr = head.next
+    # until the end of the list, reverse
+    while curr:
+        head.next = prev
+        prev = head
+        head = curr
+        curr = curr.next
+    # connect the last node before returning
+    head.next = prev
+
+    return head
+
 
 #------------------
 # Test Linked List
 #------------------
-values = [5,14,77,100,9000]
+values = ['d','c','b','a']
+# values = []
 # values = [3,2,1]
-
-# populate a linked list with values
-forward = []
-backward = []
-head = LinkedListNode(values[0])
-forward.append(head.value)
-for value in values[1:]:
-    new_node = LinkedListNode(value)
-    new_node.next_node = head
-    head = new_node
-
-print('list:')
-print_node = head
-while print_node:
-    print(print_node.value)
-    print(print_node.next_node)
-    print_node = print_node.next_node
-
-
-print('reversed:')
-
-current_node = head
-previous_node = None
-next_node = None
-print("head: ",current_node.value)
-print(current_node.next_node)
-#until we fall off the end of the list
-while current_node != None:
-    #copy the next pointer before overwriting
-    next_node = current_node.next_node
-    # reverse the 'next' pointer
-    current_node.next_node = previous_node
-    # step forward in the list
-    previous_node = current_node
-    current_node = next_node
-    if current_node:
-        print("newhead :",current_node.value)
-        print(current_node.next_node)
-
-
-
-
-
+head = populate_linked_list(values)
+print_linked_list(head)
+head = reverse_linked_list(head)
+print("reversed:")
+print_linked_list(head)
